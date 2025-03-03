@@ -19,10 +19,12 @@ st.markdown('''<div class="container">
                 <div class="col-contentML">
                     <p>ผมได้นำDataset มา จาก
                     <a href="https://www.kaggle.com/datasets/abdulmalik1518/mobiles-dataset-2025"> Kaggle </a> 
-                    ซึ่งเป็น Dataset ของ Moblieในปี2024เพื่อมาจำแนกและแบ่งประเภทของ Mobile ออกเป็น 3 ระดับ: Budget (ราคาประหยัด), Mid-range (ระดับกลาง), Premium (ระดับพรีเมียม) โดยใช้ข้อมูล เช่น RAM, แบตเตอรี่, ขนาดจอ, ฯลฯ
-                    โดยModelที่ผมเลือกที่จะนำมาใช้คือ KNN และ SVM</p>
+                    ซึ่งเป็น Dataset ของ Moblieใน ปี2024 เพื่อมาจำแนกและแบ่งประเภทของ Mobile ออกเป็น 3 ระดับ: Budget (ราคาประหยัด), Mid-range (ระดับกลาง), Premium (ระดับพรีเมียม) โดยใช้ข้อมูล เช่น RAM, แบตเตอรี่, ขนาดจอ, ฯลฯ
+                    โดย Algorithm ที่ผมเลือกที่จะนำมาใช้คือ K-Nearest Neighbors (KNN) และ Support Vector Machine (SVM)</p>
                 </div>
             </div>
         </div>''' , unsafe_allow_html=True)
+
+st.divider()
 st.markdown("<h3 style='text-align: center; color: #00000;'>Raw Data</h3>", unsafe_allow_html=True)
 st.write(df)
