@@ -1,0 +1,16 @@
+.col-content a{
+    color: beige;
+    font-size: medium;
+    text-decoration: none;
+    &:hover {
+        color: rgb(44, 111, 237);
+    }
+}
+.col-contentML a{
+    color: beige;
+    font-size: medium;
+    text-decoration: none;
+    &:hover {
+        color: rgb(44, 111, 237);
+    }
+}
