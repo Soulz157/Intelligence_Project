@@ -13,7 +13,7 @@ load_css(css_path)
 
 df = pd.read_csv('data/MobilesDataset2025.csv' ,encoding='ISO-8859-1')
 
-st.title('Machine Learning')
+st.title('Classification of Mobile Phones')
 st.markdown('''<div class="container">
             <div class="row">
                 <div class="col-contentML">
@@ -28,3 +28,13 @@ st.markdown('''<div class="container">
 st.divider()
 st.markdown("<h3 style='text-align: center; color: #00000;'>Raw Data</h3>", unsafe_allow_html=True)
 st.write(df)
+
+st.divider()
+st.subheader('Company Name Filter From Raw Data')
+st.markdown(
+    f"""
+    <div style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
+        {' '.join([f'<div style="padding: 10px; margin-right: 20px;">{name}</div>' for name in df['Company Name'].unique()])}
+    </div>
+    """, unsafe_allow_html=True
+)
