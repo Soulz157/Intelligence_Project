@@ -2,12 +2,21 @@ import time
 import streamlit as st
 import numpy as np
 import pandas as pd
+import pathlib
 import matplotlib.pyplot as plt
 import sklearn.model_selection as model_selection
 from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, f1_score
 import re
+
+def load_css(file_name: str) -> None:
+    with open(file_name) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+
+css_path = pathlib.Path("css/style.css")
+load_css(css_path)
 
 
 df = pd.read_csv('data/MobilesDataset2025.csv', encoding='ISO-8859-1')
@@ -57,6 +66,7 @@ interested = pd.DataFrame({
     'Price(Baht)': df_sample['Launched Price (USA)'],
     'Category': "",
 })
+
 sample = ({
     "Model Name": interested["Model Name"].copy(), "Price(Baht)": (interested["Price(Baht)"].str.split(" ", expand=True)[1].str.replace(",", "").astype(float) * 33.64).astype(int)
 })
@@ -70,9 +80,8 @@ category_mapping = {'Budget': 0, 'Mid-range': 1, 'Premium': 2}
 interested['Category'] = interested.apply(categorize_phone, axis=1).map(
     category_mapping).fillna(0).astype(int)
 
-# Title
-st.title('Classification of Mobile Phones')
-st.write('Welcome to the Machine Learning page!')
+st.title('📞 Classification of Mobile Phones')
+st.write('โมเดลนี้ทำได้ทำไว้เพื่อที่จะทำการจำแนกประเภทของโทรศัพท์โดยมี 3 ประเภทคือ Budget, Mid-range, Premium')
 option = st.selectbox(
     "Choose Model to Prediction the Category of Mobile Phones",
     ("K-Nearest Neighbors", "Support Vector Machine"),
@@ -86,7 +95,6 @@ on = st.toggle('Show Full Dataset')
 if on:
     st.write(df)
 
-st.write('The dataset contains information about mobile phones, including the model name, RAM, front camera, back camera, battery capacity, screen size, and price. The goal is to classify the mobile phones into three categories: Budget, Mid-range, and Premium based on their RAM and price.')
 ram_col = 'RAM(GB)'
 price_col = 'Price(Baht)'
 
@@ -95,8 +103,9 @@ if option == "K-Nearest Neighbors":
     knn = KNeighborsClassifier(n_neighbors=5)
     X = interested[[ram_col, price_col]]
     y = interested['Category']
+    X_predict = interested[[ram_col, price_col]]
     knn.fit(X, y)
-    y_pred = knn.predict(X)
+    y_pred = knn.predict(X_predict)
 
     x_min, x_max = X[ram_col].min() - 1, X[ram_col].max() + 1
     y_min, y_max = X[price_col].min() - 5000, X[price_col].max() + 5000
@@ -130,20 +139,24 @@ if option == "K-Nearest Neighbors":
     plt.ylabel('Price (Baht)')
     plt.title('Mobile Phone Classification')
     st.pyplot(plt)
-    st.write('The blue dots represent the mobile phones in the dataset. The model is trained to classify the mobile phones into three categories: Budget, Mid-range, and Premium. The model uses the RAM and price of the mobile phones as features to make the classification.')
-    st.write('The accuracy, precision, recall, and F1 score of the model are shown above. The model has an accuracy of 100%, which means it correctly classified all the mobile phones in the dataset. The precision, recall, and F1 score are also high, indicating that the model performs well in classifying the mobile phones into the three categories.')
-    st.write('The scatter plot shows the RAM and price of the mobile phones in the dataset. The model uses this information to classify the mobile phones into the three categories. The blue dots represent the mobile phones in the dataset, and the models decision boundary is shown as a black line.')
-    st.write('Overall, the model is able to accurately classify the mobile phones into the three categories based on their RAM and price, demonstrating the effectiveness of machine learning in solving classification problems.')
-    st.subheader("Model Prediction")
-    interested['Predicted Category'] = interested['Category'].map(
-        {0: 'Budget', 1: 'Mid-range', 2: 'Premium'})
-    st.write(interested[['Model Name', 'RAM(GB)',
-             'Price(Baht)', 'Predicted Category']])
+    # interested['Predicted Category'] = interested['Category'].map(
+    #     {0: 'Budget', 1: 'Mid-range', 2: 'Premium'})
+    # st.write(interested[['Model Name', 'RAM(GB)',
+    #          'Price(Baht)', 'Predicted Category']])
     st.write(f"Accuracy: {accuracy*100:.2f}%")
     st.write(f"Precision: {precision*100:.2f}%")
     st.write(f"Recall: {recall*100:.2f}%")
     st.write(f"F1 Score: {f1*100:.2f}%")
 
+    st.markdown(''' 
+    <div class="container">
+        <div class="row">
+            <div class="col-contentPre">
+                <h3>Model Prediction</h3>
+            </div>
+        </div>
+    </div>
+''', unsafe_allow_html=True)
     cm = confusion_matrix(y, y_pred)
     st.subheader("Confusion Matrix : ")
     st.write(pd.DataFrame(cm, columns=[f'Predicted {i}' for i in range(
@@ -209,13 +222,12 @@ elif option == "Support Vector Machine":
     # plt.legend()
     st.pyplot(plt)
 
-    st.subheader("Model Prediction")
-    interested['Predicted Category'] = interested['Category'].map(
-        {0: 'Budget', 1: 'Mid-range', 2: 'Premium'})
-    cmpr_df = pd.DataFrame(
-        {"True Category": y_test, "Predicted Category": y_pred})
-    st.write(interested[['Model Name', 'RAM(GB)',
-             'Price(Baht)', 'Predicted Category']], cmpr_df)
+    # interested['Predicted Category'] = interested['Category'].map(
+    #     {0: 'Budget', 1: 'Mid-range', 2: 'Premium'})
+    # cmpr_df = pd.DataFrame(
+    #     {"True Category": y_test, "Predicted Category": y_pred})
+    # st.write(interested[['Model Name', 'RAM(GB)',
+    #          'Price(Baht)', 'Predicted Category']], cmpr_df)
 
     accuracy = accuracy_score(y_test, y_pred)
     precision = precision_score(
@@ -228,6 +240,15 @@ elif option == "Support Vector Machine":
     st.write(f"Recall: {recall*100:.2f}%")
     st.write(f"F1 Score: {f1*100:.2f}%")
 
+    st.markdown(''' 
+    <div class="container">
+        <div class="row">
+            <div class="col-contentPre">
+                <h3>Model Prediction</h3>
+            </div>
+        </div>
+    </div>
+''', unsafe_allow_html=True)
     cm = confusion_matrix(y_test, y_pred)
     st.subheader("Confusion Matrix : ")
     st.write(pd.DataFrame(cm, columns=[f'Predicted {i}' for i in range(

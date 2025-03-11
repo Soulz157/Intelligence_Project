@@ -41,3 +41,4 @@ urllib3==2.3.0
 matplotlib
 scikit-learn
 tensorflow
+seaborn

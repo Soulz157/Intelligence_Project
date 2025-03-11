@@ -14,3 +14,17 @@
         color: rgb(44, 111, 237);
     }
 }
+
+.col-contentPre h3{
+    justify-content: center;
+    text-align: center;
+}
+
+.col-contentNTML a{
+    color: beige;
+    font-size: medium;
+    text-decoration: none;
+    &:hover {
+        color: rgb(44, 111, 237);
+    }
+}
