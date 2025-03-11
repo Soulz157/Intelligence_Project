@@ -281,4 +281,4 @@ st.subheader("สามารถดูโมเดลได้โดยการ
 st.page_link("pages/machine_learning_model",label="Machine Learning Model",icon="🧠")
 
 st.subheader("-หรือสามารถดูโค้ดได้ที่Github-")
-st.link_button("🔗 Source Code", "https://github.com/Soulz157/Intelligence_Project-AI-model-")
+st.link_button("🔗 Source Code", "https://github.com/Soulz157/Intelligence_Project")
