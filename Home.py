@@ -62,11 +62,11 @@ st.markdown("""
 <div class="card-container">
     <div class="card">
         <h3>🧠 Machine Learning</h3>
-        <a href="https://your-streamlit-app-url.com/machine-learning" target="_blank">Continue</a>
+        <a href="https://your-streamlit-app-url.com/machine_learning target="_blank">Continue</a>
     </div>
     <div class="card">
         <h3>🪴 Neural Network</h3>
-        <a href="https://your-streamlit-app-url.com/neural-network" target="_blank">Continue</a>
+        <a href="https://your-streamlit-app-url.com/neural_network" target="_blank">Continue</a>
     </div>
 </div>
 """, unsafe_allow_html=True)

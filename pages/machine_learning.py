@@ -278,7 +278,7 @@ accuracy = accuracy_score(y_test, y_pred)
 ''')
 st.divider()
 st.subheader("สามารถดูโมเดลได้โดยการกดที่ด้านล่าง")
-st.page_link("pages/Machine_Learning_(Model)",label="Machine Learning Model",icon="🧠")
+st.page_link("pages/machine_learning_model",label="Machine Learning Model",icon="🧠")
 
 st.subheader("-หรือสามารถดูโค้ดได้ที่Github-")
 st.link_button("🔗 Source Code", "https://github.com/Soulz157/Intelligence_Project-AI-model-")
