@@ -295,4 +295,4 @@ if artist_name:
 ''')
 
 st.page_link("pages/neural_network_model", label="Neural Network Model", icon="🪴")
-st.link_button("🔗 Source Code", "https://github.com/Soulz157/Intelligence_Project-AI-model-")
+st.link_button("🔗 Source Code", "https://github.com/Soulz157/Intelligence_Project")
