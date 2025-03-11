@@ -294,5 +294,5 @@ if artist_name:
         st.write(result)
 ''')
 
-st.page_link("./pages/neural_network_model", label="Neural Network Model", icon="🪴")
+st.link_button("🪴 Neural Network Model", "https://intelligence-project-phoorich.streamlit.app/neural_network_model")
 st.link_button("🔗 Source Code", "https://github.com/Soulz157/Intelligence_Project")
