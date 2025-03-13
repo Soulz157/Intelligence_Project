@@ -23,7 +23,7 @@ st.markdown("""
 <style>
 .card-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     gap: 20px;
     margin-top: 20px;
 }
@@ -62,7 +62,7 @@ st.markdown("""
 <div class="card-container">
     <div class="card">
         <h3>🧠 Machine Learning</h3>
-        <a href="https://intelligence-project-phoorich.streamlit.app/machine_learning>Continue</a>
+        <a href="https://intelligence-project-phoorich.streamlit.app/machine_learning">Continue</a>
     </div>
     <div class="card">
         <h3>🪴 Neural Network</h3>
